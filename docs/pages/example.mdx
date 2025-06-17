@@ -1,26 +1,67 @@
 ---
-title: Coop Creator Score API Example
+title: Coop Creator Score API Requests
 ---
 
-# Coop Creator Score API Example
+# Example Requests: Coop Creator Score API
 
-Retrieve a creator's onchain reputation and score. This API provides metrics such as total creator revenue and unique minters/collectors.
+Below are example requests to fetch the Coop Creator Score for specific creators in multiple languages:
 
-> **Note:** Replace `[address]` with the creator's Ethereum address.
+## Daniel Allan
 
-## Endpoint
+**Address:** `0xbCefc4906b443e4DB64E2b00b9af2C39e76c785c`
 
-```http
-GET https://cooprecords.xyz/api/creator/score?address=[address]
+:::code-group
+
+```bash [cURL]
+curl -X GET "https://cooprecords.xyz/api/creator/score?address=0xbCefc4906b443e4DB64E2b00b9af2C39e76c785c"
 ```
 
-## Parameters
+```python [Python]
+import requests
 
-| Name    | Type   | Required | Description                     |
-| ------- | ------ | -------- | ------------------------------- |
-| address | string | Yes      | Ethereum address of the creator |
+def get_creator_score():
+    url = "https://cooprecords.xyz/api/creator/score"
+    params = {"address": "0xbCefc4906b443e4DB64E2b00b9af2C39e76c785c"}
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    return response.json()
 
-## Request Examples
+# print(get_creator_score())
+```
+
+```javascript [JavaScript]
+async function getCreatorScore() {
+  const response = await fetch(
+    "https://cooprecords.xyz/api/creator/score?address=0xbCefc4906b443e4DB64E2b00b9af2C39e76c785c"
+  );
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  return await response.json();
+}
+// getCreatorScore().then(console.log);
+```
+
+```typescript [TypeScript]
+export interface CreatorScoreResponse {
+  earnings: number;
+  earningsUsd: string;
+  collectorsCount: number;
+}
+
+async function getCreatorScore(): Promise<CreatorScoreResponse> {
+  const response = await fetch(
+    "https://cooprecords.xyz/api/creator/score?address=0xbCefc4906b443e4DB64E2b00b9af2C39e76c785c"
+  );
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  return await response.json();
+}
+// getCreatorScore().then(console.log);
+```
+
+:::
+
+## San Holo
+
+**Address:** `0x056f1F3A4599e58Cb5C31f2255d0830822b4106d`
 
 :::code-group
 
@@ -31,84 +72,95 @@ curl -X GET "https://cooprecords.xyz/api/creator/score?address=0x056f1F3A4599e58
 ```python [Python]
 import requests
 
-def get_creator_score(address: str):
-    url = f"https://cooprecords.xyz/api/creator/score"
-    params = {"address": address}
+def get_creator_score():
+    url = "https://cooprecords.xyz/api/creator/score"
+    params = {"address": "0x056f1F3A4599e58Cb5C31f2255d0830822b4106d"}
     response = requests.get(url, params=params)
     response.raise_for_status()
     return response.json()
 
-# Example usage:
-# get_creator_score("0x056f1F3A4599e58Cb5C31f2255d0830822b4106d")
+# print(get_creator_score())
 ```
 
 ```javascript [JavaScript]
-async function getCreatorScore(address) {
+async function getCreatorScore() {
   const response = await fetch(
-    `https://cooprecords.xyz/api/creator/score?address=${address}`
+    "https://cooprecords.xyz/api/creator/score?address=0x056f1F3A4599e58Cb5C31f2255d0830822b4106d"
   );
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   return await response.json();
 }
-// Example usage:
-// getCreatorScore("0x056f1F3A4599e58Cb5C31f2255d0830822b4106d")
+// getCreatorScore().then(console.log);
 ```
 
 ```typescript [TypeScript]
 export interface CreatorScoreResponse {
-  address: string;
-  score: number;
-  totalRevenue: number;
-  uniqueCollectors: number;
-  // ...other fields as provided by the API
+  earnings: number;
+  earningsUsd: string;
+  collectorsCount: number;
 }
 
-async function getCreatorScore(address: string): Promise<CreatorScoreResponse> {
+async function getCreatorScore(): Promise<CreatorScoreResponse> {
   const response = await fetch(
-    `https://cooprecords.xyz/api/creator/score?address=${address}`
+    "https://cooprecords.xyz/api/creator/score?address=0x056f1F3A4599e58Cb5C31f2255d0830822b4106d"
   );
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   return await response.json();
 }
+// getCreatorScore().then(console.log);
 ```
 
 :::
 
-## Response Format
+## 33 Below
 
-The API returns JSON responses. Here's an example success response:
+**Address:** `0xf1a9B9A5521F69F4B925202aE0300eA72e63B3f0`
 
-```json
-{
-  "address": "0x056f1F3A4599e58Cb5C31f2255d0830822b4106d",
-  "score": 87.5,
-  "totalRevenue": 12345.67,
-  "uniqueCollectors": 321,
-  "details": {
-    "mintEvents": 456,
-    "lastActivity": "2024-06-08T12:34:56Z"
-  }
-}
+:::code-group
+
+```bash [cURL]
+curl -X GET "https://cooprecords.xyz/api/creator/score?address=0xf1a9B9A5521F69F4B925202aE0300eA72e63B3f0"
 ```
 
-## Response Properties
+```python [Python]
+import requests
 
-| Property             | Type   | Description                                 |
-| -------------------- | ------ | ------------------------------------------- |
-| address              | string | The creator's Ethereum address              |
-| score                | number | The calculated creator score                |
-| totalRevenue         | number | Total revenue generated by the creator      |
-| uniqueCollectors     | number | Number of unique minters/collectors         |
-| details              | object | Additional details (e.g., mint events, etc) |
-| details.mintEvents   | number | Number of mint events                       |
-| details.lastActivity | string | ISO timestamp of last activity              |
+def get_creator_score():
+    url = "https://cooprecords.xyz/api/creator/score"
+    params = {"address": "0xf1a9B9A5521F69F4B925202aE0300eA72e63B3f0"}
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    return response.json()
 
-## Error Response
-
-If an error occurs, the API returns:
-
-```json
-{
-  "error": "Invalid or missing address parameter."
-}
+# print(get_creator_score())
 ```
+
+```javascript [JavaScript]
+async function getCreatorScore() {
+  const response = await fetch(
+    "https://cooprecords.xyz/api/creator/score?address=0xf1a9B9A5521F69F4B925202aE0300eA72e63B3f0"
+  );
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  return await response.json();
+}
+// getCreatorScore().then(console.log);
+```
+
+```typescript [TypeScript]
+export interface CreatorScoreResponse {
+  earnings: number;
+  earningsUsd: string;
+  collectorsCount: number;
+}
+
+async function getCreatorScore(): Promise<CreatorScoreResponse> {
+  const response = await fetch(
+    "https://cooprecords.xyz/api/creator/score?address=0xf1a9B9A5521F69F4B925202aE0300eA72e63B3f0"
+  );
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  return await response.json();
+}
+// getCreatorScore().then(console.log);
+```
+
+:::

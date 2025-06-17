@@ -1,29 +1,106 @@
-# Get started
+---
+title: Coop Creator Score API Reference
+---
 
-## Coop Creator Score API
+# Coop Creator Score API Reference
 
-The Coop Creator Score API is now live! This API was built for the Base and Talent Protocol teams to help track onchain reputation for creators.
+Retrieve a creator's onchain reputation and score. This API provides metrics such as total creator revenue and unique minters/collectors.
 
-**Base domain:**  
-`https://cooprecords.xyz/api/creator/score?address=[address]`
+> **Note:** Replace `[address]` with the creator's Ethereum address.
 
-Replace `[address]` with the Ethereum address of the creator you want to look up.
+## Endpoint
 
-### Example API Endpoints
+```http
+GET https://cooprecords.xyz/api/creator/score?address=[address]
+```
 
-- [San Holo](https://www.cooprecords.xyz/api/creator/score?address=0x056f1F3A4599e58Cb5C31f2255d0830822b4106d)
-- [33 Below](https://www.cooprecords.xyz/api/creator/score?address=0xf1a9B9A5521F69F4B925202aE0300eA72e63B3f0)
-- [Daniel Allan](https://www.cooprecords.xyz/api/creator/score?address=0xbCefc4906b443e4DB64E2b00b9af2C39e76c785c)
+## Parameters
 
-### What does the API return?
+| Name    | Type   | Required | Description                     |
+| ------- | ------ | -------- | ------------------------------- |
+| address | string | Yes      | Ethereum address of the creator |
 
-The API returns a JSON object with the creator's score and related metrics, such as:
+## Request Examples
 
-- **Total creator revenue**
-- **Unique minters/collectors**
-- And more!
+:::code-group
 
-You can use this API to integrate creator reputation data into your own applications or dashboards.
+```bash [cURL]
+curl -X GET "https://cooprecords.xyz/api/creator/score?address=0x056f1F3A4599e58Cb5C31f2255d0830822b4106d"
+```
+
+```python [Python]
+import requests
+
+def get_creator_score(address: str):
+    url = f"https://cooprecords.xyz/api/creator/score"
+    params = {"address": address}
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    return response.json()
+
+# Example usage:
+# get_creator_score("0x056f1F3A4599e58Cb5C31f2255d0830822b4106d")
+```
+
+```javascript [JavaScript]
+async function getCreatorScore(address) {
+  const response = await fetch(
+    `https://cooprecords.xyz/api/creator/score?address=${address}`
+  );
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  return await response.json();
+}
+// Example usage:
+// getCreatorScore("0x056f1F3A4599e58Cb5C31f2255d0830822b4106d")
+```
+
+```typescript [TypeScript]
+export interface CreatorScoreResponse {
+  earnings: number; // in ETH
+  earningsUsd: string;
+  collectorsCount: number;
+}
+
+async function getCreatorScore(address: string): Promise<CreatorScoreResponse> {
+  const response = await fetch(
+    `https://cooprecords.xyz/api/creator/score?address=${address}`
+  );
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  return await response.json();
+}
+```
+
+:::
+
+## Response Format
+
+The API returns JSON responses. Here's an example success response:
+
+```json
+{
+  "earnings": 7.336290909005999,
+  "earningsUsd": "18855.37",
+  "collectorsCount": 13816
+}
+```
+
+## Response Properties
+
+| Property        | Type   | Description                         |
+| --------------- | ------ | ----------------------------------- |
+| earnings        | number | Total creator revenue in ETH        |
+| earningsUsd     | string | Total creator revenue in USD        |
+| collectorsCount | number | Number of unique collectors/minters |
+
+## Error Response
+
+If an error occurs, the API returns:
+
+```json
+{
+  "error": "Invalid or missing address parameter."
+}
+```
 
 ---
 
