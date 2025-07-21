@@ -5,11 +5,11 @@ export default defineConfig({
   sidebar: [
     {
       text: "Getting Started",
-      link: "/getting-started",
+      link: "/creator/getting-started",
     },
     {
       text: "Example",
-      link: "/example",
+      link: "/creator/example",
     },
   ],
 });
