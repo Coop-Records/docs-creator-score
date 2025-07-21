@@ -16,9 +16,9 @@ GET https://cooprecords.xyz/api/earnings?address=[address]
 
 ## Parameters
 
-| Name    | Type   | Required | Description                     |
-| ------- | ------ | -------- | ------------------------------- |
-| address | string | Yes      | Ethereum address of the creator |
+| Name    | Type   | Required | Description                                                                               |
+| ------- | ------ | -------- | ----------------------------------------------------------------------------------------- |
+| address | string | No       | Ethereum address of the creator. If not provided, returns total earnings across all songs |
 
 ## Request Examples
 
@@ -78,19 +78,104 @@ The API returns JSON responses. Here's an example success response:
 
 ```json
 {
-  "earnings": 7.336290909005999,
-  "earningsUsd": "18855.37",
-  "collectorsCount": 13816
+  "address": "0x512b55b00d744fC2eDB8474f223a7498c3e5a7ce",
+  "lifetimeEarnings": {
+    "eth": "153.6239",
+    "usd": "536756.73"
+  },
+  "contracts": [
+    {
+      "id": "786",
+      "songName": "SOUL (with Haasy)",
+      "artistName": "Shae District",
+      "contractAddress": "0x31CaE39585dCb76F9D299ad4F1E2F8966b3a53F3",
+      "royaltyRecipient": "0xFB28795535e5e3e5d73672f556646Eb5ca69Fe9D",
+      "totalMinted": "417",
+      "totalEarnings": "166800000000000000",
+      "maxSupply": "1000",
+      "chainId": "8453",
+      "splitMetadata": {
+        "type": "SplitV2",
+        "address": "0xFB28795535e5e3e5d73672f556646Eb5ca69Fe9D",
+        "controller": null,
+        "newPotentialController": null,
+        "distributorFeePercent": 1,
+        "distributeDirection": "push",
+        "distributionsPaused": false,
+        "createdBlock": 28380398,
+        "totalOwnership": "1000000",
+        "recipients": [
+          {
+            "recipient": {
+              "address": "0xAa65c16E19f04Ddfd664cC2Bc1e7D446d75E7646"
+            },
+            "ownership": "75000",
+            "percentAllocation": 7.5
+          },
+          {
+            "recipient": {
+              "address": "0xf5dAaE769d1bf408e31175AD11a388C82Bf2f806"
+            },
+            "ownership": "75000",
+            "percentAllocation": 7.5
+          },
+          {
+            "recipient": {
+              "address": "0x512b55b00d744fC2eDB8474f223a7498c3e5a7ce"
+            },
+            "ownership": "500000",
+            "percentAllocation": 50
+          },
+          {
+            "recipient": {
+              "address": "0x0691D4deF53079b7B91502214a61009ee0A38f0F"
+            },
+            "ownership": "350000",
+            "percentAllocation": 35
+          }
+        ]
+      }
+    }
+    // ... more contracts
+  ],
+  "totalContracts": 166
 }
 ```
 
 ## Response Properties
 
-| Property        | Type   | Description                         |
-| --------------- | ------ | ----------------------------------- |
-| earnings        | number | Total creator revenue in ETH        |
-| earningsUsd     | string | Total creator revenue in USD        |
-| collectorsCount | number | Number of unique collectors/minters |
+| Property                  | Type             | Description                               |
+| ------------------------- | ---------------- | ----------------------------------------- |
+| address                   | string           | The queried Ethereum address              |
+| lifetimeEarnings          | object           | Lifetime earnings for the address         |
+| └─ eth                    | string           | Total earnings in ETH                     |
+| └─ usd                    | string           | Total earnings in USD                     |
+| contracts                 | array of objects | List of contract/song earnings details    |
+| └─ id                     | string           | Contract/song ID                          |
+| └─ songName               | string           | Name of the song                          |
+| └─ artistName             | string           | Name of the artist                        |
+| └─ contractAddress        | string           | Contract address                          |
+| └─ royaltyRecipient       | string           | Royalty recipient address                 |
+| └─ totalMinted            | string           | Number of tokens minted                   |
+| └─ totalEarnings          | string           | Total earnings for this contract (in wei) |
+| └─ maxSupply              | string           | Maximum supply for this contract          |
+| └─ chainId                | string           | Chain ID                                  |
+| └─ splitMetadata          | object           | Split metadata for royalties              |
+| └─ type                   | string           | Split type (e.g., SplitV2)                |
+| └─ address                | string           | Split contract address                    |
+| └─ controller             | string \/ null   | Controller address or null                |
+| └─ newPotentialController | string \/ null   | New potential controller or null          |
+| └─ distributorFeePercent  | number           | Distributor fee percent                   |
+| └─ distributeDirection    | string           | Distribution direction (e.g., push)       |
+| └─ distributionsPaused    | boolean          | Whether distributions are paused          |
+| └─ createdBlock           | number           | Block number when split was created       |
+| └─ totalOwnership         | string           | Total ownership units                     |
+| └─ recipients             | array of objects | List of split recipients                  |
+| └─ recipient              | object           | Recipient object                          |
+| └─ address                | string           | Recipient address                         |
+| └─ ownership              | string           | Ownership units                           |
+| └─ percentAllocation      | number           | Percent allocation for this recipient     |
+| totalContracts            | number           | Total number of contracts in the response |
 
 ## Error Response
 
