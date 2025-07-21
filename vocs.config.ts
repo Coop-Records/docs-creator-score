@@ -17,7 +17,7 @@ export default defineConfig({
       ],
     },
     {
-      text: "Creator",
+      text: "Creator (Legacy)",
       items: [
         {
           text: "Getting Started",
