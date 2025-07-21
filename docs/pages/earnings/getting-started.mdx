@@ -83,6 +83,7 @@ The API returns JSON responses. Here's an example success response:
     "eth": "153.6239",
     "usd": "536756.73"
   },
+  "collectorsCount": 13816,
   "contracts": [
     {
       "id": "786",
@@ -150,6 +151,7 @@ The API returns JSON responses. Here's an example success response:
 | lifetimeEarnings          | object           | Lifetime earnings for the address         |
 | └─ eth                    | string           | Total earnings in ETH                     |
 | └─ usd                    | string           | Total earnings in USD                     |
+| collectorsCount           | number           | Number of unique collectors/minters       |
 | contracts                 | array of objects | List of contract/song earnings details    |
 | └─ id                     | string           | Contract/song ID                          |
 | └─ songName               | string           | Name of the song                          |
