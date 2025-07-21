@@ -1,0 +1,220 @@
+---
+title: Coop Earnings API Requests
+---
+
+# Example Requests: Coop Earnings API
+
+Below are example requests to fetch the Coop Earnings for specific creators in multiple languages:
+
+## Daniel Allan
+
+**Address:** `0xbCefc4906b443e4DB64E2b00b9af2C39e76c785c`
+
+:::code-group
+
+```bash [cURL]
+curl -X GET "https://cooprecords.xyz/api/earnings?address=0xbCefc4906b443e4DB64E2b00b9af2C39e76c785c"
+```
+
+```python [Python]
+import requests
+
+def get_earnings():
+    url = "https://cooprecords.xyz/api/earnings"
+    params = {"address": "0xbCefc4906b443e4DB64E2b00b9af2C39e76c785c"}
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    return response.json()
+
+# print(get_earnings())
+```
+
+```javascript [JavaScript]
+async function getEarnings() {
+  const response = await fetch(
+    "https://cooprecords.xyz/api/earnings?address=0xbCefc4906b443e4DB64E2b00b9af2C39e76c785c"
+  );
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  return await response.json();
+}
+// getEarnings().then(console.log);
+```
+
+```typescript [TypeScript]
+export interface EarningsResponse {
+  earnings: number;
+  earningsUsd: string;
+  collectorsCount: number;
+}
+
+async function getEarnings(): Promise<EarningsResponse> {
+  const response = await fetch(
+    "https://cooprecords.xyz/api/earnings?address=0xbCefc4906b443e4DB64E2b00b9af2C39e76c785c"
+  );
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  return await response.json();
+}
+// getEarnings().then(console.log);
+```
+
+:::
+
+<a
+  href="https://cooprecords.xyz/api/earnings?address=0xbCefc4906b443e4DB64E2b00b9af2C39e76c785c"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    display: "inline-block",
+    margin: "12px 0",
+    padding: "8px 18px",
+    background: "#2563eb",
+    color: "#fff",
+    borderRadius: "6px",
+    textDecoration: "none",
+    fontWeight: 600,
+  }}
+>
+  Try it
+</a>
+
+## San Holo
+
+**Address:** `0x056f1F3A4599e58Cb5C31f2255d0830822b4106d`
+
+:::code-group
+
+```bash [cURL]
+curl -X GET "https://cooprecords.xyz/api/earnings?address=0x056f1F3A4599e58Cb5C31f2255d0830822b4106d"
+```
+
+```python [Python]
+import requests
+
+def get_earnings():
+    url = "https://cooprecords.xyz/api/earnings"
+    params = {"address": "0x056f1F3A4599e58Cb5C31f2255d0830822b4106d"}
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    return response.json()
+
+# print(get_earnings())
+```
+
+```javascript [JavaScript]
+async function getEarnings() {
+  const response = await fetch(
+    "https://cooprecords.xyz/api/earnings?address=0x056f1F3A4599e58Cb5C31f2255d0830822b4106d"
+  );
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  return await response.json();
+}
+// getEarnings().then(console.log);
+```
+
+```typescript [TypeScript]
+export interface EarningsResponse {
+  earnings: number;
+  earningsUsd: string;
+  collectorsCount: number;
+}
+
+async function getEarnings(): Promise<EarningsResponse> {
+  const response = await fetch(
+    "https://cooprecords.xyz/api/earnings?address=0x056f1F3A4599e58Cb5C31f2255d0830822b4106d"
+  );
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  return await response.json();
+}
+// getEarnings().then(console.log);
+```
+
+:::
+
+<a
+  href="https://cooprecords.xyz/api/earnings?address=0x056f1F3A4599e58Cb5C31f2255d0830822b4106d"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    display: "inline-block",
+    margin: "12px 0",
+    padding: "8px 18px",
+    background: "#2563eb",
+    color: "#fff",
+    borderRadius: "6px",
+    textDecoration: "none",
+    fontWeight: 600,
+  }}
+>
+  Try it
+</a>
+
+## 33 Below
+
+**Address:** `0xf1a9B9A5521F69F4B925202aE0300eA72e63B3f0`
+
+:::code-group
+
+```bash [cURL]
+curl -X GET "https://cooprecords.xyz/api/earnings?address=0xf1a9B9A5521F69F4B925202aE0300eA72e63B3f0"
+```
+
+```python [Python]
+import requests
+
+def get_earnings():
+    url = "https://cooprecords.xyz/api/earnings"
+    params = {"address": "0xf1a9B9A5521F69F4B925202aE0300eA72e63B3f0"}
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    return response.json()
+
+# print(get_earnings())
+```
+
+```javascript [JavaScript]
+async function getEarnings() {
+  const response = await fetch(
+    "https://cooprecords.xyz/api/earnings?address=0xf1a9B9A5521F69F4B925202aE0300eA72e63B3f0"
+  );
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  return await response.json();
+}
+// getEarnings().then(console.log);
+```
+
+```typescript [TypeScript]
+export interface EarningsResponse {
+  earnings: number;
+  earningsUsd: string;
+  collectorsCount: number;
+}
+
+async function getEarnings(): Promise<EarningsResponse> {
+  const response = await fetch(
+    "https://cooprecords.xyz/api/earnings?address=0xf1a9B9A5521F69F4B925202aE0300eA72e63B3f0"
+  );
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  return await response.json();
+}
+// getEarnings().then(console.log);
+```
+
+:::
+
+<a
+  href="https://cooprecords.xyz/api/earnings?address=0xf1a9B9A5521F69F4B925202aE0300eA72e63B3f0"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    display: "inline-block",
+    margin: "12px 0",
+    padding: "8px 18px",
+    background: "#2563eb",
+    color: "#fff",
+    borderRadius: "6px",
+    textDecoration: "none",
+    fontWeight: 600,
+  }}
+>
+  Try it
+</a>
